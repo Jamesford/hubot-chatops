@@ -58,7 +58,11 @@ module.exports = (robot) ->
         msg.send "_.range(10): #{range}"
 
     robot.router.post '/hubot/test/chatops/whpost/:user', (req, res) ->
-        user = req.params.user
+        # user = req.params.user
+
+        user =
+            room: req.params.user
+
         if req.body.message
             robot.send user, req.body.message
             res.send(200)
