@@ -1,0 +1,24 @@
+name: hubot-chatops-custom-test
+display: Custom Test Plugin
+description: Test Chato.ps' custom plugin feature
+author: Jamesford
+repo: https://github.com/Jamesford/hubot-chatops-custom-test
+paths:
+    - scripts/custom-test.coffee
+commands:
+	- test bot hearing - Tests `robot.hear` method
+	- hubot test response - Tests `robot.respond` method
+	- hubot test http - Tests `robot.http()` method
+	- hubot test envar - Tests environment variable was set
+	- hubot test dependencies - Tests dependencies are available
+settings:
+    - label: Custom Env Variable
+      description: Enter a Env Variable here for hubot to echo back with
+      key: HUBOT_CHATOPS_CUSTOM_TEST
+      pattern: '.*'
+hooks:
+    - url: http://wh.chato.ps/<% id %>/hubot/test/chatops/whpost/:user
+      method: POST
+      description: POST to this url to test Webhooks are working
+dependencies:
+    - underscore: '1.7.0'

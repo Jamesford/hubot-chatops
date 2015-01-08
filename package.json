@@ -1,0 +1,18 @@
+{
+  "name": "hubot-chatops-custom-test",
+  "version": "1.0.0",
+  "description": "A demo plugin for loading into chato.ps",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Jamesford/hubot-chatops-custom-test.git"
+  },
+  "author": "Jamesford",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Jamesford/hubot-chatops-custom-test/issues"
+  },
+  "homepage": "https://github.com/Jamesford/hubot-chatops-custom-test",
+  "dependencies": {
+    "underscore": "^1.7.0"
+  }
+}
