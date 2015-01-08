@@ -32,12 +32,14 @@ module.exports = (robot) ->
         msg.send 'Responding to "testresponse"!'
 
     robot.respond /test http/i, (msg) ->
-        robot.http('http://www.randomtext.me/#/gibberish/p-1/5-10')
+        robot.http('http://www.randomtext.me/api/gibberish/p-1/5-10')
             .get() (err, res, body) ->
                 if err
                     msg.send 'Encountered error:', err
                 else
-                    msg.send "#{body}"
+                    text = JSON.parse(body).text_out
+                    text = text.replace('<p>', '').replace('</p>', '').trim()
+                    msg.send "#{text}"
 
     robot.enter (msg) ->
         msg.send 'Hello!'
@@ -46,7 +48,7 @@ module.exports = (robot) ->
         msg.send 'Aww they left!'
 
     robot.respond /test envar/i, (msg) ->
-        unless answer?
+        unless envar?
             msg.send "Missing HUBOT_CHATOPS_CUSTOM_TEST in environment: please set and try again"
             return
         msg.send "HUBOT_CHATOPS_CUSTOM_TEST: #{envar}"
