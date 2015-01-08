@@ -59,5 +59,9 @@ module.exports = (robot) ->
 
     robot.router.post '/hubot/test/chatops/whpost/:user', (req, res) ->
         user = req.params.user
-        data = JSON.parse req.body.payload
-        robot.send user, "Received post data: #{data}"
+        if req.body.message
+            robot.send user, req.body.message
+            res.send(200)
+        else
+            robot.send user, "I received a message for you, but there was an error :("
+            res.send(400)
