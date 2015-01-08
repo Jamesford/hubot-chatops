@@ -57,14 +57,11 @@ module.exports = (robot) ->
         range = _.range(10)
         msg.send "_.range(10): #{range}"
 
-    robot.router.post '/hubot/test/chatops/whpost/:user', (req, res) ->
-        # user = req.params.user
-
-        user =
-            room: req.params.user
+    robot.router.post '/hubot/test/chatops/whpost/:room', (req, res) ->
+        msg = { room: req.params.room }
 
         if req.body.message
-            robot.send user, req.body.message
+            robot.send msg, req.body.message
             res.send(200)
         else
             robot.send user, "I received a message for you, but there was an error :("
