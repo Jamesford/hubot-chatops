@@ -6,11 +6,11 @@ repo: https://github.com/Jamesford/hubot-chatops-custom-test
 paths:
     - scripts/custom-test.coffee
 commands:
-	- test bot hearing - Tests `robot.hear` method
-	- hubot test response - Tests `robot.respond` method
-	- hubot test http - Tests `robot.http()` method
-	- hubot test envar - Tests environment variable was set
-	- hubot test dependencies - Tests dependencies are available
+    - test bot hearing - Tests `robot.hear` method
+    - hubot test response - Tests `robot.respond` method
+    - hubot test http - Tests `robot.http()` method
+    - hubot test envar - Tests environment variable was set
+    - hubot test dependencies - Tests dependencies are available
 settings:
     - label: Custom Env Variable
       description: Enter a Env Variable here for hubot to echo back with
