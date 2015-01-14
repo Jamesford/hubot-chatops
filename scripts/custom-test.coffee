@@ -5,7 +5,7 @@
 #   "underscore": "1.7.0"
 #
 # Configuration:
-#   HUBOT_CHATOPS_CUSTOM_TEST
+#   HUBOT_CHATOPS_TEST
 #
 # Commands:
 #   test bot hearing - Tests `robot.hear` method
@@ -15,13 +15,13 @@
 #   hubot test dependencies - Tests dependencies are available
 #
 # URLS:
-#   POST /hubot/test/chatops/whpost/:user
+#   POST /hubot/chatops/test/:room
 #
 # Author:
 #   Jamesford
 #
 
-envar = process.env.HUBOT_CHATOPS_CUSTOM_TEST
+envar = process.env.HUBOT_CHATOPS_TEST
 _ = require 'underscore'
 
 module.exports = (robot) ->
@@ -39,7 +39,7 @@ module.exports = (robot) ->
                 else
                     text = JSON.parse(body).text_out
                     text = text.replace('<p>', '').replace('</p>', '').trim()
-                    msg.send "#{text}"
+                    msg.send "Success: #{text}"
 
     robot.enter (msg) ->
         msg.send 'Hello!'
@@ -49,15 +49,15 @@ module.exports = (robot) ->
 
     robot.respond /test envar/i, (msg) ->
         unless envar?
-            msg.send "Missing HUBOT_CHATOPS_CUSTOM_TEST in environment: please set and try again"
+            msg.send "Missing HUBOT_CHATOPS_TEST in environment: please set and try again"
             return
-        msg.send "HUBOT_CHATOPS_CUSTOM_TEST: #{envar}"
+        msg.send "HUBOT_CHATOPS_TEST: #{envar}"
 
     robot.respond /test dependencies/i, (msg) ->
         range = _.range(10)
         msg.send "_.range(10): #{range}"
 
-    robot.router.post '/hubot/test/chatops/whpost/:room', (req, res) ->
+    robot.router.post '/hubot/chatops/test/:room', (req, res) ->
         msg = { room: req.params.room }
 
         if req.body.message
